@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: localstack-sa
+  name: localstack-scc
 ---
 apiVersion: apps/v1
 kind: Deployment
