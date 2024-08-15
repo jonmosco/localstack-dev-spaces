@@ -4,8 +4,8 @@ kind: ServiceAccount
 metadata:
   name: localstack-sa
 ---
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: localstack-app
 spec:
@@ -18,7 +18,7 @@ spec:
       labels:
         app: localstack-app
     spec:
-      serviceAccountName: localstack-sa
+      serviceAccountName: localstack-scc
       containers:
         - name: localstack
           image: public.ecr.aws/localstack/localstack
@@ -31,15 +31,15 @@ spec:
           #     memory: "200Mi"
           #     cpu: "10m"
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: localstack-app
 spec:
-ports:
-  - name: http-4566
-    port: 4566
-    protocol: TCP
-    targetPort: 4566
-selector:
-  app: localstack-app
+  ports:
+    - name: http-4566
+      port: 4566
+      protocol: TCP
+      targetPort: 4566
+  selector:
+    app: localstack-app
